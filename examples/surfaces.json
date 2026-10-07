@@ -1,0 +1,42 @@
+{
+  "_comment": "Surface register. Add an entry and the next run picks it up. 'known_issue' documents a blocker you already know about: it stays in the digest but never fires a change alert until its state actually changes. Every URL here is a placeholder: replace with your own.",
+  "surfaces": [
+    {
+      "name": "Example Site",
+      "url": "https://example.com",
+      "brand": "Example",
+      "platform": "Static host",
+      "expect_status": 200,
+      "must_contain": "Example Domain",
+      "cf_zone_tag_env": "WEBMON_CF_ZONE_EXAMPLE_COM",
+      "cf_zone_label": "example.com",
+      "aliases": [
+        { "url": "https://www.example.com", "expect_redirect_to": "https://example.com" }
+      ],
+      "page_checks": {
+        "title_contains": "Example",
+        "selectors": ["h1"],
+        "max_load_ms": 8000,
+        "fail_on_console_error": true
+      }
+    },
+    {
+      "name": "Example Shop",
+      "url": "https://shop.example.org",
+      "brand": "Example",
+      "platform": "Hosted store",
+      "expect_status": 200,
+      "must_contain": "Add to cart",
+      "must_not_match": "href=\"#\"[^>]*aria-label=\"Buy now",
+      "_check_note": "must_not_match catches a dead purchase button: the page returns a healthy 200 while the call to action goes nowhere."
+    },
+    {
+      "name": "Example Docs",
+      "url": "https://docs.example.net",
+      "brand": "Example",
+      "platform": "Static host",
+      "expect_status": 200,
+      "known_issue": "Origin intermittently times out (tracked internally)"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Unit tests (offline, mocked HTTP)
+        run: python3 -m unittest discover -s tests -v
+      - name: Validate the sample register
+        run: python3 -m arcturion_web_monitor --config examples/surfaces.json --validate

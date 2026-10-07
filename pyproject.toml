@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arcturion-web-monitor"
+version = "0.1.0"
+description = "Site-health digest that alerts only on change, with optional Playwright page checks and Cloudflare analytics"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Arcturion Technologies"}]
+
+[project.optional-dependencies]
+playwright = ["playwright>=1.40"]
+
+[project.scripts]
+arcturion-web-monitor = "arcturion_web_monitor.cli:main"
+
+[tool.setuptools]
+packages = ["arcturion_web_monitor"]
