@@ -25,7 +25,10 @@ python3 -m arcturion_web_monitor --validate  # check the file, nothing else
 python3 -m arcturion_web_monitor --dry-run --digest
 ```
 
-`--dry-run` prints what would be sent, sends nothing and does not save state.
+`--dry-run` checks the configured pages and prints notifications instead of
+sending them; it does not save the results as monitoring state. Checks may make
+network requests, and the run creates a local state directory and temporary
+lock. Use `--validate` to check the configuration without running page checks.
 Drop it and the first real run records a baseline. From then on you hear about
 changes only.
 
